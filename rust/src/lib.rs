@@ -1,8 +1,11 @@
 use pyo3::prelude::*;
 
+mod bridge;
+
 /// Formats the sum of two numbers as string.
 #[pyfunction]
 fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
+    bridge::AllocateAndPrint();
     Ok((a + b).to_string())
 }
 

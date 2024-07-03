@@ -5,8 +5,6 @@ project(HelloWorld)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -O0")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
 
@@ -29,7 +27,10 @@ if(EMSCRIPTEN)
 endif()
 
 add_library(world src/helloworld.cpp)
+target_sources(world PRIVATE src/helloworld.cpp)
+target_include_directories(world PUBLIC include)
 install(TARGETS world DESTINATION ${CMAKE_INSTALL_PREFIX})
+install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_PREFIX}/include)
 
 add_executable(${PROJECT_NAME} main.cpp)
 target_link_libraries(${PROJECT_NAME} world)
