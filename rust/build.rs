@@ -1,4 +1,5 @@
 pub fn main() {
+    pyo3_build_config::add_extension_module_link_args();
     println!("cargo:rerun-if-changed=../cpp");
 
     let output = cmake::Config::new("../cpp").build();
@@ -9,6 +10,7 @@ pub fn main() {
         .include(output.join("include"))
         .flag_if_supported("-std=c++20")
         .flag("-fexceptions")
+        .static_flag(true)
         .compile("worldbridge");
     
     println!("cargo:rerun-if-changed=src/bridge.rs");
