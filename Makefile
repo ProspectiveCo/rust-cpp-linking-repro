@@ -38,7 +38,7 @@ build_rust_wheel:
 ifdef EMSDK_PATH
 	@source $(EMSDK_PATH)/emsdk_env.sh && cd rust && maturin build --target=wasm32-unknown-emscripten -i python3.12
 else
-	cd rust && maturin build -i python3.11
+	cd rust && maturin build -i python3.12
 endif
 
 .PHONY: clean
