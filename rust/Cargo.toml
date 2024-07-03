@@ -10,3 +10,6 @@ crate-type = ["cdylib"]
 
 [dependencies]
 pyo3 = "0.21.1"
+
+[build-dependencies]
+cmake = "0.1.50"

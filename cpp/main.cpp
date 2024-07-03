@@ -1,6 +1,6 @@
 #include "helloworld.h"
 
-int myfn() {
+int main() {
   auto internal = AllocateAndPrint();
   delete internal;
   return 0;

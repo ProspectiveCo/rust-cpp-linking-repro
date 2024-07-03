@@ -29,6 +29,7 @@ if(EMSCRIPTEN)
 endif()
 
 add_library(world src/helloworld.cpp)
+install(TARGETS world DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 add_executable(${PROJECT_NAME} main.cpp)
 target_link_libraries(${PROJECT_NAME} world)
