@@ -13,11 +13,7 @@ CARGO_FLAGS += --verbose
 endif
 
 .PHONY: all
-all: debug
-
-# .PHONE: setup_emsdk
-# setup_emsdk:
-# 	git clone 
+all: debug build_rust_wheel
 
 .PHONY: debug
 debug: CMAKE_FLAGS += -DCMAKE_BUILD_TYPE=Debug
@@ -43,7 +39,7 @@ build_cpp:
 .PHONY: build_rust_wheel
 build_rust_wheel:
 ifdef EMSDK_PATH
-	@source $(EMSDK_PATH)/emsdk_env.sh && cd rust && RUSTFLAGS='-C link-arg=-sSIDE_MODULE=1' maturin build --target=wasm32-unknown-emscripten -i python3.12 $(CARGO_FLAGS)
+	@source $(EMSDK_PATH)/emsdk_env.sh && cd rust && maturin build --target=wasm32-unknown-emscripten -i python3.12 $(CARGO_FLAGS)
 else
 	cd rust && maturin build -i python3.12
 endif
