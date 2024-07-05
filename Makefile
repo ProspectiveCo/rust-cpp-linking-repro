@@ -39,7 +39,7 @@ build_cpp:
 .PHONY: build_rust_wheel
 build_rust_wheel:
 ifdef EMSDK_PATH
-	@source $(EMSDK_PATH)/emsdk_env.sh && cd rust && maturin build --target=wasm32-unknown-emscripten -i python3.12 $(CARGO_FLAGS)
+	@source $(EMSDK_PATH)/emsdk_env.sh && cd rust && RUSTC_LOG=rustc_codegen_ssa::back::link=info RUSTFLAGS='-C link-arg=-sEXPORT_ALL=1 -C relocation-model=pic -Clink-args=-v' maturin build --target=wasm32-unknown-emscripten -i python3.12 $(CARGO_FLAGS)
 else
 	cd rust && maturin build -i python3.12
 endif

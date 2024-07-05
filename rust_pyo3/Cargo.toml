@@ -1,16 +1,18 @@
 [package]
-name = "zaworld_vanilla"
+name = "zaworld"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [lib]
-name = "zaworld_vanilla"
+name = "zaworld"
 crate-type = ["cdylib"]
 
 [dependencies]
 cxx = "1.0.124"
+pyo3 = "0.21.1"
 
 [build-dependencies]
 cmake = "0.1.50"
 cxx-build = "1.0.124"
+pyo3-build-config = "0.22.0"
